@@ -2,7 +2,9 @@ const catchError = require("../utils/catchError");
 const Director = require("../models/Director");
 
 const getAll = catchError(async (req, res) => {
-  const results = await Director.findAll();
+  const results = await Director.findAll({
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  });
   return res.json(results);
 });
 
